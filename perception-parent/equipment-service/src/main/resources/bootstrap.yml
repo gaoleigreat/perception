@@ -1,0 +1,21 @@
+server:
+  port: 38010
+  servlet:
+    context-path: /
+spring:
+  main:
+    allow-bean-definition-overriding: true
+  application:
+    name: equipment-service
+  profiles:
+    active: local
+  cloud:
+    stream:
+      bindings:
+        output_log:
+          destination: printLog
+          content-type: application/json
+
+
+application:
+  description: 设备服务
