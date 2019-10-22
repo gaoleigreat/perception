@@ -16,6 +16,7 @@
         <module>framework-configserver</module>
         <module>framework-zuul</module>
         <module>framework-monitor</module>
+
     </modules>
 
 

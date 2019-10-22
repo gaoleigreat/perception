@@ -16,6 +16,9 @@
         <module>framework-swagger</module>
         <module>framework-mybatis</module>
         <module>framework-core</module>
+        <module>framework-excel</module>
+        <module>framework-word</module>
+        <module>framework-base</module>
     </modules>
 
 

@@ -91,6 +91,29 @@
             <artifactId>framework-feign</artifactId>
             <version>1.1-SNAPSHOT</version>
         </dependency>
+
+        <dependency>
+            <groupId>com.lego</groupId>
+            <artifactId>framework-mybatis</artifactId>
+            <version>1.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.lego</groupId>
+            <artifactId>framework-base</artifactId>
+            <version>1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.lego</groupId>
+            <artifactId>framework-excel</artifactId>
+            <version>1.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+        </dependency>
     </dependencies>
 
     <build>

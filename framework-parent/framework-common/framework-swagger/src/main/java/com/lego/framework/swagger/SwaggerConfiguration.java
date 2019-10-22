@@ -18,40 +18,43 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 import java.util.ArrayList;
 import java.util.List;
 
+
 /**
- * @author xiaodao
+ * @author yanglf
  * @descript
  * @since 2018/12/20
  **/
-@ConditionalOnExpression
+@ConditionalOnExpression(value = "!'${spring.profiles.active}'.equals('prod')")
 @Configuration
 @EnableSwagger2
 public class SwaggerConfiguration {
 
+    private static final String CLIENT_ID = "admin";
+    private static final String CLIENT_SECRET = "admin123";
+    private static final String AUTH_SERVER = "/";
+    @Value("${define.swagger.basePackage:com.lego}")
+    private String basePackage;
 
-    @Value("${swagger.title:后台接口api文档}")
+    @Value("${define.swagger.title:后台接口api文档}")
     private String swaggerTitle;
 
-    @Value("${swagger.contact.name:高磊}")
+    @Value("${define.swagger.contactName:lego}")
     private String contactName;
 
-    @Value("${swagger.contact.url:https://www.baidu.com}")
+    @Value("${define.swagger.contactUrl:lego.cn}")
     private String contactUrl;
 
-    @Value("${swagger.contact.email:513684652@qq.com}")
+    @Value("${define.swagger.contactEmail:survey@legocloud.cn}")
     private String contactEmail;
 
-    @Value("${spring.application.name:application.name}")
+    @Value("${spring.application.name}")
     private String swaggerDescription;
 
-    @Value("${swagger.termsOfServiceUrl:https://www.baidu.com}")
+    @Value("${define.swagger.serviceUrl:lego.cn}")
     private String swaggerServiceUrl;
 
-    @Value("${swagger.version:1.0}")
+    @Value("${define.swagger.version:1.0}")
     private String swaggerVersion;
-
-    @Value("${swagger.routeIdentifier:routeIdentifier}")
-    private String routeIdentifier;
 
     @Autowired
     private Environment environment;
@@ -62,24 +65,8 @@ public class SwaggerConfiguration {
         List<Parameter> parameters = new ArrayList<>();
         ParameterBuilder tokenPar = new ParameterBuilder();
         tokenPar.name("token").description("令牌").modelRef(new ModelRef("String")).parameterType("header").required(false).build();
-        ParameterBuilder versionPar = new ParameterBuilder();
-        versionPar.name("version").description("应用版本号").modelRef(new ModelRef("String")).parameterType("header").required(true).build();
-        ParameterBuilder timePar = new ParameterBuilder();
-        timePar.name("timeStamp").description("当前时间戳").modelRef(new ModelRef("Long")).parameterType("header").required(true).build();
-        ParameterBuilder snPar = new ParameterBuilder();
-        snPar.name("sn").description("设备序列号").modelRef(new ModelRef("String")).parameterType("header").required(false).build();
-        ParameterBuilder deviceTypePar = new ParameterBuilder();
-        deviceTypePar.name("deviceType").description("设备类型(1-Android;2-WEB)").modelRef(new ModelRef("String")).parameterType("header").allowableValues(new AllowableRangeValues("1", "2")).required(true).build();
-        ParameterBuilder osVersionPar = new ParameterBuilder();
-        osVersionPar.name("osVersion").description("设备系统版本号").modelRef(new ModelRef("String")).parameterType("header").required(true).build();
 
-
-/*        parameters.add(tokenPar.build());
-        parameters.add(versionPar.build());
-        parameters.add(timePar.build());
-        parameters.add(snPar.build());
-        parameters.add(deviceTypePar.build());
-        parameters.add(osVersionPar.build());*/
+        parameters.add(tokenPar.build());
 
         List<ResponseMessage> responseMessages = new ArrayList<>();
         responseMessages.add(new ResponseMessageBuilder().code(1).message("操作成功").build());
@@ -109,12 +96,13 @@ public class SwaggerConfiguration {
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
                 .title(swaggerTitle)
-                .contact(new Contact(contactName, contactUrl, contactEmail))
-                .description("restful风格接口，服务名称：" + environment.getProperty("spring.application.name") + "</br>路由标识：" + routeIdentifier)
-                // .termsOfServiceUrl(swaggerServiceUrl)
+                //  .contact(new Contact(contactName,contactUrl,contactEmail))
+                .description("restful风格接口，服务名称：" + environment.getProperty("application.description") + "</br>路由标识：" + environment.getProperty("spring.application.name")).version("1.0")
+                //   .termsOfServiceUrl(swaggerServiceUrl)
                 .version(swaggerVersion)
                 .build();
     }
+
 
 
 }

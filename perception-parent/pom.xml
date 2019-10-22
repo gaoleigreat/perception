@@ -14,6 +14,7 @@
     <modules>
         <module>equipment-service</module>
         <module>perception-file</module>
+        <module>perception-test</module>
     </modules>
 
 
