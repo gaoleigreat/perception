@@ -21,7 +21,7 @@
         <springfox-swagger-ui.version>2.9.2</springfox-swagger-ui.version>
         <spring.boot.admin.version>2.1.6</spring.boot.admin.version>
         <lombok.version>1.18.8</lombok.version>
-        <fastjson.version>1.2.58</fastjson.version>
+        <fastjson.version>1.2.83</fastjson.version>
         <com.baomidou.version>3.1.2</com.baomidou.version>
         <com.alibaba.druid.version>1.1.20</com.alibaba.druid.version>
         <framework.version>1.0-SNAPSHOT</framework.version>
